@@ -19,7 +19,7 @@
             "min": 0,
             "max": 0,
             "layout": "table",
-            "button_label": "",
+            "button_label": "Aggiungi vista",
             "sub_fields": [
                 {
                     "key": "field_601fdb56016d7",
@@ -64,7 +64,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -88,7 +88,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -137,7 +137,7 @@
                             "min": 0,
                             "max": 0,
                             "layout": "block",
-                            "button_label": "",
+                            "button_label": "Aggiungi area",
                             "sub_fields": [
                                 {
                                     "key": "field_601fdc21d393f",
@@ -156,44 +156,6 @@
                                     "endpoint": 0
                                 },
                                 {
-                                    "key": "field_601fd999fc6ba",
-                                    "label": "Facoltativo",
-                                    "name": "facoltativo",
-                                    "type": "true_false",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "message": "",
-                                    "default_value": 0,
-                                    "ui": 0,
-                                    "ui_on_text": "",
-                                    "ui_off_text": ""
-                                },
-                                {
-                                    "key": "field_601f9525fc6b8",
-                                    "label": "Nome",
-                                    "name": "nome",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "maxlength": ""
-                                },
-                                {
                                     "key": "field_601f952bfc6b9",
                                     "label": "Immagine",
                                     "name": "immagine",
@@ -202,7 +164,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "20",
                                         "class": "",
                                         "id": ""
                                     },
@@ -218,6 +180,47 @@
                                     "mime_types": ""
                                 },
                                 {
+                                    "key": "field_601fd999fc6ba",
+                                    "label": "Facoltativo",
+                                    "name": "facoltativo",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "10",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "",
+                                    "default_value": 0,
+                                    "ui": 0,
+                                    "ui_on_text": "",
+                                    "ui_off_text": ""
+                                },
+                                {
+                                    "key": "field_601f9525fc6b8",
+                                    "label": "Area",
+                                    "name": "area",
+                                    "type": "post_object",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "20",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+                                        "aree"
+                                    ],
+                                    "taxonomy": "",
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "return_format": "object",
+                                    "ui": 1
+                                },
+                                {
                                     "key": "field_601fda0cfc6be",
                                     "label": "Colori disponibili",
                                     "name": "colori_disponibili",
@@ -226,7 +229,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "50",
                                         "class": "",
                                         "id": ""
                                     },
@@ -267,7 +270,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "30",
                                         "class": "",
                                         "id": ""
                                     },
@@ -289,7 +292,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "70",
                                         "class": "",
                                         "id": ""
                                     },
@@ -297,7 +300,7 @@
                                     "min": 0,
                                     "max": 0,
                                     "layout": "table",
-                                    "button_label": "",
+                                    "button_label": "Aggiungi colorazione parte",
                                     "sub_fields": [
                                         {
                                             "key": "field_601fd9c6fc6bc",
@@ -366,5 +369,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1613571366
+    "modified": 1620456146
 }
