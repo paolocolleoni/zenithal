@@ -145,7 +145,7 @@
   border: 1px solid #000;
 }
 .zen_tool .zen_tool_parti {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .zen_tool .zen_tool_parti .zen_tool_tasto {
   position: relative;
@@ -156,9 +156,10 @@
   border-right: 1px solid rgba(0, 0, 0, 0);
 }
 .zen_tool .zen_tool_parti .zen_tool_tasto.selected {
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
-  border-left: 1px solid rgba(0, 0, 0, 0.07);
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .zen_tool .zen_tool_parti .zen_tool_tasto.selected::after {
   content: "";
@@ -170,7 +171,7 @@
   background-color: #fff;
 }
 .zen_tool .zen_tool_parti .zen_tool_tasto:hover {
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: white;
 }
 .zen_tool .zen_tool_colori {
   background-color: #fff;
