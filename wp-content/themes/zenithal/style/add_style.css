@@ -218,4 +218,11 @@
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+
+.zen_cfield {
+  position: fixed;
+  top: 100px;
+  right: 100px;
+  background-color: #f00;
+}
 /*# sourceMappingURL=add_style.css.map */

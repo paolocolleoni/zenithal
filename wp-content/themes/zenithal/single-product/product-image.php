@@ -244,6 +244,9 @@ function selectColor(classe,idColore,hex){
 	$('.zen_tool_colori .zen_tool_tasto.'+classe+'-'+idColore).addClass('selected');
 
 	$('.zen_parte_fant.'+classe).css('background-color',hex);
+	
+	$('#personalizzazione').val(classe+'-'+idColore+'-'+hex);
+
 }
 
 
