@@ -120,7 +120,53 @@ $aree = array_unique($aree);
 		<?php endwhile; ?>
 	</div>
 
-	<div style="position: fixed; top: 10px; left: 10px; max-height: calc(100% - 20px); overflow: scroll; background-color: #fff; border: 1px solid rgba(0,0,0,0.2); font-size: .7rem; z-index: 99999;">
+	<div style="position: fixed; top: 10px; left: 10px; width: 1px; height: 1px; overflow: hidden; background-color: #fff; border: 1px solid rgba(0,0,0,0.2); font-size: .7rem; z-index: 99999; pointer-events: none; opacity: 0;">
+
+		<?php
+			$combination = array();
+
+			while ( have_rows('viste') ) : the_row();	
+				$dati =  get_sub_field('dati');
+				$areeSection = get_sub_field('aree');
+				$prodAree = $areeSection['lista_aree'];
+
+				$aree = array();
+
+				for($x=0; $x<count($prodAree); $x++){
+					$areaTitle = sanitize_title($prodAree[$x]['area']->post_title);
+					$fantTitle = sanitize_title($prodAree[$x]['fantasia']->post_title);
+					
+					$colorazione = $prodAree[$x]['colorazione'];
+					$col = array();		
+					for($n=0; $n<count($colorazione); $n++){
+						$col[$colorazione[$n]['parte']] = get_field('colore',$colorazione[$n]['colore_parte']);
+					}
+					
+					$fpN = 1;
+
+					$parti = array();
+
+					while ( have_rows('parti',$prodAree[$x]['fantasia']->ID) ) : the_row();
+
+						$parte = sanitize_title(get_sub_field('nome'));
+
+						$parti[$parte] = $col['0'.$fpN];
+						$fpN++;
+					endwhile;										
+										
+					$aree[$areaTitle][$fantTitle] = $parti;
+
+				}
+
+				$vista = array(
+					'nome' => $dati['nome'],
+					'aree' => $aree,
+				);
+				$combination[] = $vista;
+			endwhile;
+			echo "<input type='hidden' id='initValues' value='".json_encode($combination)."' />";			
+		?>
+
 		<?php
 
 			$RAaree = array();
