@@ -237,6 +237,11 @@
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+@media screen and (max-width: 992px) {
+  .zen_tool .zen_tool_colori {
+    overflow: auto;
+  }
+}
 
 .zen_cfield {
   position: fixed;
