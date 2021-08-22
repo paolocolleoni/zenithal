@@ -121,6 +121,7 @@ $aree = array_unique($aree);
 	</div>
 
 	<div style="position: fixed; top: 10px; left: 10px; width: 1px; height: 1px; overflow: hidden; background-color: #fff; border: 1px solid rgba(0,0,0,0.2); font-size: .7rem; z-index: 99999; pointer-events: none; opacity: 0;">
+	<!-- <div style="position: fixed; top: 10px; left: 10px; width: 500px; height: 600px; overflow: auto; background-color: #fff; border: 1px solid rgba(0,0,0,0.2); font-size: .7rem; z-index: 99999; "> -->
 
 		<?php
 			$combination = array();
@@ -133,8 +134,8 @@ $aree = array_unique($aree);
 				$aree = array();
 
 				for($x=0; $x<count($prodAree); $x++){
-					$areaTitle = sanitize_title($prodAree[$x]['area']->post_title);
-					$fantTitle = sanitize_title($prodAree[$x]['fantasia']->post_title);
+					$areaTitle = $prodAree[$x]['area']->post_name;
+					$fantTitle = $prodAree[$x]['fantasia']->post_name;
 					
 					$colorazione = $prodAree[$x]['colorazione'];
 					$col = array();		
@@ -180,7 +181,7 @@ $aree = array_unique($aree);
 
 				for($x=0; $x<count($prodAree); $x++){
 
-					$area = sanitize_title($prodAree[$x]['area']->post_title);					
+					$area = $prodAree[$x]['area']->post_name;					
 
 					$coloriDisponibili = $prodAree[$x]['colori_disponibili'];
 
@@ -264,7 +265,6 @@ $aree = array_unique($aree);
 <script>
 
 
-
 function selectArea(area){
 	$('.zen_tool_aree .zen_tool_tasto').removeClass('selected');
 	$('.zen_tool_aree .zen_tool_tasto.'+area).addClass('selected');
@@ -290,8 +290,34 @@ function selectColor(classe,idColore,hex){
 	$('.zen_tool_colori .zen_tool_tasto.'+classe+'-'+idColore).addClass('selected');
 
 	$('.zen_parte_fant.'+classe).css('background-color',hex);
-	
-	$('#personalizzazione').val(classe+'-'+idColore+'-'+hex);
+
+	var initValues = JSON.parse($('#initValues').val());
+
+	var spVal = myArr = classe.split("-");
+	var area = spVal[0];
+	var parte = spVal[1];
+
+	<?php
+		$nArea = 0;	
+		while ( have_rows('viste') ) : the_row();
+
+			for($x=0; $x<count($prodAree); $x++){
+
+				$areeSection = get_sub_field('aree');
+				$prodAree = $areeSection['lista_aree'];
+				$fantTitle = $prodAree[$x]['fantasia']->post_name;
+				// $area = $prodAree[$x]['area']->post_name;
+				?>
+					initValues[<?= $nArea; ?>]['aree'][area]['<?= $fantTitle; ?>'][parte] = hex;
+				<?php
+
+			}
+		$nArea++;
+		endwhile;
+	?>
+
+	$('#initValues').val(JSON.stringify(initValues));
+	$('#personalizzazione').val(JSON.stringify(initValues));
 
 }
 
@@ -344,4 +370,10 @@ const mouseUpHandler = function() {
     ele.style.removeProperty('user-select');
 };
 ele.addEventListener('mousedown', mouseDownHandler);
+
+
+$( document ).ready(function() {
+	var initVal = $('#initValues').val();
+	$('#personalizzazione').val(initVal);
+});
 </script>
