@@ -99,6 +99,11 @@
             color: #fff;
             border: 1px solid #000;
         }
+        @media screen and (max-width: 992px) {
+            margin: 7px 4px;
+            padding: 2px 5px;
+            font-size: .5rem;
+        }
     }
 }
 
@@ -114,6 +119,10 @@
         padding: 6px 12px 6px 12px;
         font-size: .7rem;
         cursor: pointer;
+        @media screen and (max-width: 992px) {
+            padding: 4px 8px;
+            font-size: .5rem;
+        }
     }
     .zen_tool_aree{
         background-color: transparent;
@@ -134,6 +143,10 @@
                 background-color: #000;
                 color: #fff;
                 border: 1px solid #000;
+            }
+            @media screen and (max-width: 992px) {
+                padding: 4px 8px;
+                font-size: .5rem;
             }
         }
     }
@@ -211,4 +224,33 @@
     top: 100px;
     right: 100px;
     background-color: #f00;
+}
+
+.variation{
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+}
+
+.woocommerce-product-gallery__wrapper{
+    display: none;
+}
+
+@media screen and (max-width: 992px) {
+    .woocommerce-product-gallery--with-images{
+        padding-top: 0px;
+    }
+    .woocommerce-product-gallery__wrapper{
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 0;
+    }
+    div.product .woocommerce-product-gallery {
+        max-width: 600px !important;
+    }
+}
+
+.woocommerce-product-gallery__trigger{
+    display: none;
 }

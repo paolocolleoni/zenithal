@@ -96,7 +96,7 @@ $aree = array_unique($aree);
         <img alt="zen" class="zen_img zen_ombre_luci" src="<?= $ombre_luci['url']; ?>" />
     </div>
 <?php endwhile; ?>
-	<!-- <figure class="woocommerce-product-gallery__wrapper">
+	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		if ( $product->get_image_id() ) {
 			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
@@ -110,7 +110,7 @@ $aree = array_unique($aree);
 
 		do_action( 'woocommerce_product_thumbnails' );
 		?>
-	</figure> -->
+	</figure>
 	<div class="zen_menu_viste">
 		<?php while ( have_rows('viste') ) : the_row(); ?>
 		<?php $datiSection = get_sub_field('dati'); ?>

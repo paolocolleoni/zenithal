@@ -108,6 +108,13 @@
   color: #fff;
   border: 1px solid #000;
 }
+@media screen and (max-width: 992px) {
+  .zen_menu_viste .zen_btn_vista {
+    margin: 7px 4px;
+    padding: 2px 5px;
+    font-size: 0.5rem;
+  }
+}
 
 .zen_tool {
   width: 100%;
@@ -120,6 +127,12 @@
   padding: 6px 12px 6px 12px;
   font-size: 0.7rem;
   cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+  .zen_tool .zen_tool_tasto {
+    padding: 4px 8px;
+    font-size: 0.5rem;
+  }
 }
 .zen_tool .zen_tool_aree {
   background-color: transparent;
@@ -143,6 +156,12 @@
   background-color: #000;
   color: #fff;
   border: 1px solid #000;
+}
+@media screen and (max-width: 992px) {
+  .zen_tool .zen_tool_aree .zen_tool_tasto {
+    padding: 4px 8px;
+    font-size: 0.5rem;
+  }
 }
 .zen_tool .zen_tool_parti {
   background-color: rgba(255, 255, 255, 0.69);
@@ -224,5 +243,35 @@
   top: 100px;
   right: 100px;
   background-color: #f00;
+}
+
+.variation {
+  opacity: 0;
+  height: 0px;
+  overflow: hidden;
+}
+
+.woocommerce-product-gallery__wrapper {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .woocommerce-product-gallery--with-images {
+    padding-top: 0px;
+  }
+
+  .woocommerce-product-gallery__wrapper {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  div.product .woocommerce-product-gallery {
+    max-width: 600px !important;
+  }
+}
+.woocommerce-product-gallery__trigger {
+  display: none;
 }
 /*# sourceMappingURL=add_style.css.map */
