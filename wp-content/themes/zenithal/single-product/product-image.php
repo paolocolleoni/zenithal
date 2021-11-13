@@ -83,7 +83,7 @@ $aree = array_unique($aree);
 					while ( have_rows('parti',$prodAree[$x]['fantasia']->ID) ) : the_row();
 					$img = get_sub_field('immagine');
 				?>
-					<div class="zen_parte_fant <?= sanitize_title($prodAree[$x]['area']->post_title); ?>-<?= sanitize_title(get_sub_field('nome')); ?>" style="-webkit-mask-image: url('<?= $img['url']; ?>');  mask-image: url('<?= $img['url']; ?>'); background-color: <?= $col['0'.$fpN]; ?>"></div>
+					<div class="zen_parte_fant <?= sanitize_title($prodAree[$x]['area']->post_title); ?>-_-<?= sanitize_title(get_sub_field('nome')); ?>" style="-webkit-mask-image: url('<?= $img['url']; ?>');  mask-image: url('<?= $img['url']; ?>'); background-color: <?= $col['0'.$fpN]; ?>"></div>
 				<?php
 					$fpN++;
 					endwhile;
@@ -243,7 +243,7 @@ $aree = array_unique($aree);
 
 		<div class="zen_tool_section zen_tool_parti">			
 			<?php for($x=0; $x<count($RAparti); $x++){ ?>
-				<div class="zen_tool_tasto <?= $RAparti[$x]['area'] ?> <?= $RAparti[$x]['area'] ?>-<?= $RAparti[$x]['nome'] ?>" onclick="selectParte('<?= $RAparti[$x]['area'] ?>-<?= $RAparti[$x]['nome'] ?>');">
+				<div class="zen_tool_tasto <?= $RAparti[$x]['area'] ?> <?= $RAparti[$x]['area'] ?>-_-<?= $RAparti[$x]['nome'] ?>" onclick="selectParte('<?= $RAparti[$x]['area'] ?>-_-<?= $RAparti[$x]['nome'] ?>');">
 					<?= __('Colore','zen'); ?> <?= $RAparti[$x]['nome']; ?>
 				</div>
 			<?php } ?>
@@ -252,7 +252,7 @@ $aree = array_unique($aree);
 
 		<div class="zen_tool_section zen_tool_colori" id="dts">
 			<?php for($x=0; $x<count($RAcolori); $x++){ ?>
-				<div class="zen_tool_tasto <?php if($RAcolori[$x]['init']==1){ ?>selected<?php } ?> <?= $RAcolori[$x]['area'] ?>-<?= $RAcolori[$x]['parte'] ?> <?= $RAcolori[$x]['area'] ?>-<?= $RAcolori[$x]['parte'] ?>-<?= $RAcolori[$x]['ID'] ?>" style="background-color: <?= $RAcolori[$x]['hex']; ?>;" onclick="selectColor('<?= $RAcolori[$x]['area'] ?>-<?= $RAcolori[$x]['parte'] ?>','<?= $RAcolori[$x]['ID'] ?>','<?= $RAcolori[$x]['hex'] ?>');">
+				<div class="zen_tool_tasto <?php if($RAcolori[$x]['init']==1){ ?>selected<?php } ?> <?= $RAcolori[$x]['area'] ?>-_-<?= $RAcolori[$x]['parte'] ?> <?= $RAcolori[$x]['area'] ?>-_-<?= $RAcolori[$x]['parte'] ?>-_-<?= $RAcolori[$x]['ID'] ?>" style="background-color: <?= $RAcolori[$x]['hex']; ?>;" onclick="selectColor('<?= $RAcolori[$x]['area'] ?>-_-<?= $RAcolori[$x]['parte'] ?>','<?= $RAcolori[$x]['ID'] ?>','<?= $RAcolori[$x]['hex'] ?>');">
 				</div>
 			<?php } ?>
 			<div style="clear: both;"></div>
@@ -287,28 +287,36 @@ function selectParte(parte){
 
 function selectColor(classe,idColore,hex){
 	$('.zen_tool_colori .zen_tool_tasto.'+classe).removeClass('selected');
-	$('.zen_tool_colori .zen_tool_tasto.'+classe+'-'+idColore).addClass('selected');
+	$('.zen_tool_colori .zen_tool_tasto.'+classe+'-_-'+idColore).addClass('selected');
 
 	$('.zen_parte_fant.'+classe).css('background-color',hex);
 
 	var initValues = JSON.parse($('#initValues').val());
 
-	var spVal = myArr = classe.split("-");
+	// console.log(initValues);
+	// console.log(classe);
+
+	var spVal = myArr = classe.split("-_-");
 	var area = spVal[0];
 	var parte = spVal[1];
+
 
 	<?php
 		$nArea = 0;	
 		while ( have_rows('viste') ) : the_row();
+		
+
+		$areeSection = get_sub_field('aree');
+		$prodAree = $areeSection['lista_aree'];
 
 			for($x=0; $x<count($prodAree); $x++){
-
-				$areeSection = get_sub_field('aree');
-				$prodAree = $areeSection['lista_aree'];
 				$fantTitle = $prodAree[$x]['fantasia']->post_name;
-				// $area = $prodAree[$x]['area']->post_name;
+				$area = $prodAree[$x]['area']->post_name;
 				?>
-					initValues[<?= $nArea; ?>]['aree'][area]['<?= $fantTitle; ?>'][parte] = hex;
+					if(area == '<?= $area; ?>'){
+						// console.log("[<?= $nArea; ?>]['aree']["+area+"]['<?= $fantTitle; ?>']["+parte+"]");
+						initValues[<?= $nArea; ?>]['aree'][area]['<?= $fantTitle; ?>'][parte] = hex;
+					}
 				<?php
 
 			}

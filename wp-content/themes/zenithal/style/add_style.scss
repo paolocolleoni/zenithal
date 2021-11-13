@@ -257,3 +257,22 @@
 .woocommerce-product-gallery__trigger{
     display: none;
 }
+
+
+.cartImage{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1); 
+} 
+
+body.woocommerce-cart .entry-content .woocommerce .woocommerce-cart-form table tbody .cart_item td.product-thumbnail img{
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+}
+body.woocommerce-cart .entry-content .woocommerce .woocommerce-cart-form table tbody .cart_item td.product-thumbnail .zen_imageWrapper.active{
+    position: relative;
+}

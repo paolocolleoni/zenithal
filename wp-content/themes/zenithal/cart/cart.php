@@ -64,23 +64,73 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 						<td class="product-thumbnail">
 						<?php
-						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-						if ( ! $product_permalink ) {
-							echo $thumbnail; // PHPCS: XSS ok.
-						} else {
-							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
-						}
+							$comb = json_decode($cart_item['thwepof_options']['personalizzazione']['value'],true);
+							$aree = array();
+							while ( have_rows('viste',$cart_item['product_id']) ) : the_row();
+							
+								$areeSection = get_sub_field('aree');
+								$prodAree = $areeSection['lista_aree'];
+							
+								for($x=0; $x<count($prodAree); $x++){
+									$aree[] = $prodAree[$x]['area']->ID;
+								}
+							
+							endwhile;
+							
+							$aree = array_unique($aree);
 						?>
+						<?php $X = 1; ?>
+						<?php while ( have_rows('viste',$cart_item['product_id']) ) : the_row(); ?>
+							<?php if($X == 1){ ?>
+							<?php
+								$dati =  get_sub_field('dati');
+								$base = $dati['base'];
+								$ombre_luci = $dati['ombre__luci'];
+							?>
+							<div class="zen_imageWrapper zen_vista-<?= $dati['nome']; ?> active">
+								<img alt="zen" class="zen_img zen_base" src="<?= $base['url']; ?>" />
+
+								<?php		
+									$areeSection = get_sub_field('aree');
+									$prodAree = $areeSection['lista_aree'];
+									for($x=0; $x<count($prodAree); $x++){
+
+										$img = $prodAree[$x]['immagine'];
+								?>
+									<div class="zen_area" style="-webkit-mask-image: url('<?= $img['url']; ?>');  mask-image: url('<?= $img['url']; ?>');">
+										<?php
+											$colorazione = $prodAree[$x]['colorazione'];
+											$col = array();		
+											for($n=0; $n<count($colorazione); $n++){
+												$col[$colorazione[$n]['parte']] = get_field('colore',$colorazione[$n]['colore_parte']);
+											}
+											
+											$fpN = 1;
+											while ( have_rows('parti',$prodAree[$x]['fantasia']->ID) ) : the_row();
+											$img = get_sub_field('immagine');
+										?>
+											<div data-marler="<?= sanitize_title($prodAree[$x]['area']->post_title); ?> <?= sanitize_title($prodAree[$x]['fantasia']->post_title); ?> <?= sanitize_title(get_sub_field('nome')); ?>" class="zen_parte_fant <?= sanitize_title($prodAree[$x]['area']->post_title); ?>-<?= sanitize_title(get_sub_field('nome')); ?>" style="-webkit-mask-image: url('<?= $img['url']; ?>');  mask-image: url('<?= $img['url']; ?>'); background-color: <?= $comb[0]['aree'][sanitize_title($prodAree[$x]['area']->post_title)][sanitize_title($prodAree[$x]['fantasia']->post_name)][sanitize_title(get_sub_field('nome'))]; ?>"></div>
+										<?php
+											$fpN++;
+											endwhile;
+										?>
+									</div>
+								<?php
+									}
+								?>
+
+								<img alt="zen" class="zen_img zen_ombre_luci" src="<?= $ombre_luci['url']; ?>" />
+							</div>
+							<?php $X++; ?>
+							<?php } ?>
+						<?php endwhile; ?>
+							
 						</td>
 
 						<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 						<?php
-						if ( ! $product_permalink ) {
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
-						} else {
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-						}
+						
+						echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
 
 						do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
 
