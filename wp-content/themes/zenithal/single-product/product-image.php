@@ -300,7 +300,7 @@ function selectColor(classe,idColore,hex){
 	var area = spVal[0];
 	var parte = spVal[1];
 
-
+ 
 	<?php
 		$nArea = 0;	
 		while ( have_rows('viste') ) : the_row();
